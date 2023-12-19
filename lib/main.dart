@@ -36,8 +36,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  List<Color> kfColors = [Colors.lime, Colors.blue, Colors.lime, Colors.red.shade400];
+  List<Color> kfColors = [
+    Colors.lime,
+    Colors.blue,
+    Colors.lime,
+    Colors.red.shade400
+  ];
   int index = 0;
 
   @override
@@ -46,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     index = Random().nextInt(4);
   }
+
   void changeIndex() {
     setState(() {
       int temp = index + 1;
@@ -65,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: kfColors[index],
       body: Center(
         child: Listener(
-          onPointerDown: (event) => { changeIndex() },
+          onPointerDown: (event) => {changeIndex()},
           child: const ModelViewer(
             src:
                 'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DME.glb',
@@ -85,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             DefaultTextStyle(
               style: TextStyle(
                   fontFamily: 'Coves',
-                  fontSize: (screenWidth < 500) ? 16 : 22,
+                  fontSize: (screenWidth < 500) ? 12 : 22,
                   overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w700),
               child: AnimatedTextKit(
@@ -95,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    "this is a 3d flutter web app?",
+                    "this is a flutter web app",
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
@@ -116,34 +121,38 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
                 pause: const Duration(milliseconds: 4000),
-
               ),
             ),
             const Spacer(),
-            FloatingActionButton(
-              onPressed: () =>
-                  {launchUrl(Uri.parse('https://linktr.ee/kevinfielding'))},
-              tooltip: 'some cool stuff i\'ve worked on',
-              shape: const CircleBorder(),
-              child: const Icon(Icons.work_history_outlined),
-            ),
-            const SizedBox(width: 15),
-            FloatingActionButton(
-              onPressed: () => {
-                launchUrl(Uri.parse(
-                    'https://storage.googleapis.com/kevinfielding/kevinfieldingca/KevinFieldingResume2024.pdf'))
-              },
-              tooltip: 'look at my resume',
-              shape: const CircleBorder(),
-              child: const Icon(Icons.description_sharp),
-            ),
-            const SizedBox(width: 15),
-            FloatingActionButton(
-              onPressed: () =>
-                  {launchUrl(Uri.parse('mailto:kvnfldng@gmail.com'))},
-              tooltip: 'send me an email',
-              shape: const CircleBorder(),
-              child: const Icon(Icons.email),
+            Row(
+              children: [
+                FloatingActionButton(
+                  onPressed: () => {
+                    launchUrl(Uri.parse('https://linktr.ee/kevinfielding'))
+                  },
+                  tooltip: 'some cool stuff i\'ve worked on',
+                  shape: const CircleBorder(),
+                  child: const Icon(Icons.work_history_outlined),
+                ),
+                const SizedBox(width: 15),
+                FloatingActionButton(
+                  onPressed: () => {
+                    launchUrl(Uri.parse(
+                        'https://storage.googleapis.com/kevinfielding/kevinfieldingca/KevinFieldingResume2024.pdf'))
+                  },
+                  tooltip: 'look at my resume',
+                  shape: const CircleBorder(),
+                  child: const Icon(Icons.description_sharp),
+                ),
+                const SizedBox(width: 15),
+                FloatingActionButton(
+                  onPressed: () =>
+                      {launchUrl(Uri.parse('mailto:kvnfldng@gmail.com'))},
+                  tooltip: 'send me an email',
+                  shape: const CircleBorder(),
+                  child: const Icon(Icons.email),
+                ),
+              ],
             ),
           ],
         ),
