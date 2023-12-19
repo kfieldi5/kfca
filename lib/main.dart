@@ -16,21 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kevin Fielding',
       theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // TRY THIS: Try running your application with "flutter run". You'll see
-          // the application has a purple toolbar. Then, without quitting the app,
-          // try changing the seedColor in the colorScheme below to Colors.green
-          // and then invoke "hot reload" (save your changes or press the "hot
-          // reload" button in a Flutter-supported IDE, or press "r" if you used
-          // the command line to start the app).
-          //
-          // Notice that the counter didn't reset back to zero; the application
-          // state is not lost during the reload. To reset the state, use hot
-          // restart instead.
-          //
-          // This works for code too, not just values: Most code changes can be
-          // tested with just a hot reload.
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
           useMaterial3: true,
           fontFamily: 'Coves'),
@@ -42,15 +27,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -60,17 +36,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       body: const Center(
         child: ModelViewer(
-          src: 'assets/3DME.glb',
-          backgroundColor: Colors.lightBlue,
+          src:
+              'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DME.glb',
+          backgroundColor: Colors.blue,
           autoRotate: true,
           disableZoom: true,
           cameraControls: false,
@@ -85,14 +56,37 @@ class _MyHomePageState extends State<MyHomePage> {
             DefaultTextStyle(
               style: const TextStyle(
                   fontFamily: 'Coves',
-                  fontSize: 22,
+                  fontSize: 20,
                   fontWeight: FontWeight.w700),
-              child: AnimatedTextKit(animatedTexts: [
-                TypewriterAnimatedText(
-                  "drop me a line...",
-                  speed: const Duration(milliseconds: 200),
-                ),
-              ], pause: const Duration(milliseconds: 800)),
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    "drop me a line...",
+                    speed: const Duration(milliseconds: 200),
+                  ),
+                  TypewriterAnimatedText(
+                    "this is a 3d flutter web app?",
+                    speed: const Duration(milliseconds: 200),
+                  ),
+                  TypewriterAnimatedText(
+                    "(still in progess)",
+                    speed: const Duration(milliseconds: 200),
+                  ),
+                  TypewriterAnimatedText(
+                    "i am a massive nba fan...",
+                    speed: const Duration(milliseconds: 200),
+                  ),
+                  TypewriterAnimatedText(
+                    "android dev since 2011...",
+                    speed: const Duration(milliseconds: 200),
+                  ),
+                  TypewriterAnimatedText(
+                    "iOS dev since 2017...",
+                    speed: const Duration(milliseconds: 200),
+                  ),
+                ],
+                pause: const Duration(milliseconds: 1600),
+              ),
             ),
             const Spacer(),
             FloatingActionButton(
