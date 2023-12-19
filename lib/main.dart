@@ -86,44 +86,46 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 40.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            DefaultTextStyle(
-              style: TextStyle(
-                  fontFamily: 'Coves',
-                  fontSize: (screenWidth < 500) ? 12 : 22,
-                  overflow: TextOverflow.ellipsis,
-                  fontWeight: FontWeight.w700),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    "drop me a line...",
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    "this is a flutter web app",
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    "(still in progess)",
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    "i am a massive nba fan...",
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    "android dev since 2011...",
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    "iOS dev since 2014...",
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                ],
-                pause: const Duration(milliseconds: 4000),
+            Flexible (
+              child: DefaultTextStyle(
+                style: TextStyle(
+                    fontFamily: 'Coves',
+                    fontSize: (screenWidth < 500) ? 16 : 22,
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.w700),
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "drop me a line...",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "this is a flutter web app",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "(still in progess)",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "i am a massive nba fan...",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "android dev since 2011...",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                    TypewriterAnimatedText(
+                      "iOS dev since 2014...",
+                      speed: const Duration(milliseconds: 100),
+                    ),
+                  ],
+                  pause: const Duration(milliseconds: 4000),
+                ),
               ),
             ),
-            const Spacer(),
             Row(
               children: [
                 FloatingActionButton(
