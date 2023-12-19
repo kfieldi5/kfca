@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
@@ -34,19 +36,46 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  List<Color> kfColors = [Colors.lime, Colors.blue, Colors.lime, Colors.red.shade400];
+  int index = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    index = Random().nextInt(4);
+  }
+  void changeIndex() {
+    setState(() {
+      int temp = index + 1;
+      if (temp > kfColors.length - 1) {
+        temp = 0;
+      }
+      //print("New index: $temp");
+      index = temp;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      body: const Center(
-        child: ModelViewer(
-          src:
-              'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DME.glb',
-          backgroundColor: Colors.blue,
-          autoRotate: true,
-          disableZoom: true,
-          cameraControls: false,
-          rotationPerSecond: "-500%",
-          cameraOrbit: "0deg 85deg 105%",
+      backgroundColor: kfColors[index],
+      body: Center(
+        child: Listener(
+          onPointerDown: (event) => { changeIndex() },
+          child: const ModelViewer(
+            src:
+                'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DME.glb',
+            backgroundColor: Colors.transparent,
+            autoRotate: true,
+            disableZoom: true,
+            cameraControls: false,
+            rotationPerSecond: "-500%",
+            cameraOrbit: "0deg 85deg 105%",
+          ),
         ),
       ),
       floatingActionButton: Padding(
@@ -54,38 +83,40 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           children: [
             DefaultTextStyle(
-              style: const TextStyle(
+              style: TextStyle(
                   fontFamily: 'Coves',
-                  fontSize: 20,
+                  fontSize: (screenWidth < 500) ? 16 : 22,
+                  overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w700),
               child: AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
                     "drop me a line...",
-                    speed: const Duration(milliseconds: 200),
+                    speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
                     "this is a 3d flutter web app?",
-                    speed: const Duration(milliseconds: 200),
+                    speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
                     "(still in progess)",
-                    speed: const Duration(milliseconds: 200),
+                    speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
                     "i am a massive nba fan...",
-                    speed: const Duration(milliseconds: 200),
+                    speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
                     "android dev since 2011...",
-                    speed: const Duration(milliseconds: 200),
+                    speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    "iOS dev since 2017...",
-                    speed: const Duration(milliseconds: 200),
+                    "iOS dev since 2014...",
+                    speed: const Duration(milliseconds: 100),
                   ),
                 ],
-                pause: const Duration(milliseconds: 1600),
+                pause: const Duration(milliseconds: 4000),
+
               ),
             ),
             const Spacer(),
