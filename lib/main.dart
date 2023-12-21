@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -36,11 +37,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Color> kfColors = [
-    Colors.lime,
-    Colors.blue,
-    Colors.red.shade400
-  ];
+  List<Color> kfColors = [Colors.lime, Colors.blue, Colors.red.shade400];
 
   static const String skyboxUrl = 'assets/skybox.jpeg';
   bool switchVal = true;
@@ -80,15 +77,20 @@ class _MyHomePageState extends State<MyHomePage> {
           onPointerDown: (event) => {changeIndex()},
           child: ModelViewer(
             key: ValueKey('kf$switchVal'),
-            src: 'assets/3DMELIGHT8.glb',//'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DME.glb',
+            src: (kDebugMode)
+                ? 'assets/3DMELIGHT8.glb'
+                : 'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DMELIGHT8.glb',
             autoRotate: true,
             cameraControls: true,
-
             disableZoom: true,
             disablePan: true,
             disableTap: true,
             autoPlay: true,
-            skyboxImage: switchVal ? skyboxUrl : '',
+            skyboxImage: switchVal
+                ? (kDebugMode
+                    ? 'assets/skybox.jpeg'
+                    : 'https://storage.googleapis.com/kevinfielding/kevinfieldingca/skybox.jpeg')
+                : '',
             animationName: "Take 001",
             rotationPerSecond: "-500%",
             cameraOrbit: "0deg 85deg 105%",
@@ -105,8 +107,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Switch(
               value: switchVal,
               activeColor: Colors.deepOrangeAccent,
-              thumbIcon: MaterialStateProperty.resolveWith<Icon?>((Set<MaterialState> states) {
-                return const Icon(Icons.eco); // All other states will use the default thumbIcon.
+              thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+                  (Set<MaterialState> states) {
+                return const Icon(Icons
+                    .eco); // All other states will use the default thumbIcon.
               }),
               onChanged: (val) {
                 switchJustHit = true;
@@ -119,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible (
+                Flexible(
                   child: DefaultTextStyle(
                     style: TextStyle(
                         fontFamily: 'Coves',
