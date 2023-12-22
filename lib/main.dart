@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/services.dart';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 : 'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DMELIGHT8.glb',
             autoRotate: true,
             cameraControls: true,
-            disableZoom: true,
+            disableZoom: false,
             disablePan: true,
             disableTap: true,
             autoPlay: true,
@@ -107,11 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Switch(
               value: switchVal,
               activeColor: Colors.deepOrangeAccent,
-              thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
-                  (Set<MaterialState> states) {
-                return const Icon(Icons
-                    .eco); // All other states will use the default thumbIcon.
-              }),
+              inactiveTrackColor: Colors.black.withAlpha(50),
+              trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+              thumbIcon: MaterialStateProperty.all(
+                  const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
                 setState(() {
@@ -127,13 +128,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: DefaultTextStyle(
                     style: TextStyle(
                         fontFamily: 'Coves',
-                        fontSize: (screenWidth < 500) ? 16 : 22,
+                        fontSize: (screenWidth < 500) ? 14 : 22,
                         overflow: TextOverflow.ellipsis,
+                        color: Colors.white,
                         fontWeight: FontWeight.w700),
                     child: AnimatedTextKit(
                       animatedTexts: [
                         TypewriterAnimatedText(
-                          "drop me a line...",
+                          "welcome to my isle!",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
@@ -156,7 +158,16 @@ class _MyHomePageState extends State<MyHomePage> {
                           "iOS dev since 2014...",
                           speed: const Duration(milliseconds: 100),
                         ),
+                        TypewriterAnimatedText(
+                          "i weirdly enjoy CI/CD config",
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                        TypewriterAnimatedText(
+                          "drop me a line...",
+                          speed: const Duration(milliseconds: 100),
+                        ),
                       ],
+                      isRepeatingAnimation: false,
                       pause: const Duration(milliseconds: 4000),
                     ),
                   ),
@@ -169,6 +180,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       tooltip: 'some cool stuff i\'ve worked on',
                       shape: const CircleBorder(),
+                      backgroundColor: Colors.deepOrangeAccent,
+                      foregroundColor: Colors.white,
                       child: const Icon(Icons.work_history_sharp),
                     ),
                     const SizedBox(width: 15),
@@ -179,14 +192,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       tooltip: 'look at my resume',
                       shape: const CircleBorder(),
+                      backgroundColor: Colors.deepOrangeAccent,
+                      foregroundColor: Colors.white,
                       child: const Icon(Icons.description_sharp),
                     ),
                     const SizedBox(width: 15),
                     FloatingActionButton(
-                      onPressed: () =>
-                          {launchUrl(Uri.parse('mailto:kvnfldng@gmail.com'))},
+                      onPressed: () => {
+                        Clipboard.setData(
+                                const ClipboardData(text: 'kvnfldng@gmail.com'))
+                            .then((_) => ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                        content: Text(
+                                  'Copied to clipboard: kvnfldng@gmail.com',
+                                  textAlign: TextAlign.right,
+                                ))))
+                      },
                       tooltip: 'send me an email',
                       shape: const CircleBorder(),
+                      backgroundColor: Colors.deepOrangeAccent,
+                      foregroundColor: Colors.white,
                       child: const Icon(Icons.email),
                     ),
                   ],
