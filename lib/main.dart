@@ -143,11 +143,23 @@ class _MyHomePageState extends State<MyHomePage> {
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
-                          "(still in progess)",
+                          "(still under construction)",
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                        TypewriterAnimatedText(
+                          "it is runnable as an android app",
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                        TypewriterAnimatedText(
+                          "or an iOS app as well",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
                           "i am a massive nba fan...",
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                        TypewriterAnimatedText(
+                          "and a novice motorcycle mechanic",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
