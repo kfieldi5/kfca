@@ -139,7 +139,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
-                          "this is a flutter web app",
+                          "this is a flutter app.",
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                        TypewriterAnimatedText(
+                          "written in dart, kotlin, swift and js.",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
@@ -147,11 +151,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
-                          "it is runnable as an android app",
+                          "it is hosted and unit tested via Firebase,",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
-                          "or an iOS app as well",
+                          "but is also runnable as an Android or iOS app",
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                        TypewriterAnimatedText(
+                          "...some stuff about me...",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
@@ -163,11 +171,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
-                          "android dev since 2011...",
+                          "i've been an android dev since 2011...",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
-                          "iOS dev since 2014...",
+                          "and an iOS dev since 2014...",
                           speed: const Duration(milliseconds: 100),
                         ),
                         TypewriterAnimatedText(
@@ -180,13 +188,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ],
                       isRepeatingAnimation: false,
-                      pause: const Duration(milliseconds: 4000),
+                      pause: const Duration(milliseconds: (kDebugMode ? 500 : 3000)),
                     ),
                   ),
                 ),
+                const SizedBox(width: 15),
                 Row(
                   children: [
                     FloatingActionButton(
+                      mouseCursor: SystemMouseCursors.click,
                       onPressed: () => {
                         launchUrl(Uri.parse('https://linktr.ee/kevinfielding'))
                       },
@@ -198,6 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     const SizedBox(width: 15),
                     FloatingActionButton(
+                      mouseCursor: SystemMouseCursors.click,
                       onPressed: () => {
                         launchUrl(Uri.parse(
                             'https://storage.googleapis.com/kevinfielding/kevinfieldingca/KevinFieldingResume2024.pdf'))
@@ -210,6 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     const SizedBox(width: 15),
                     FloatingActionButton(
+                      mouseCursor: SystemMouseCursors.click,
                       onPressed: () => {
                         Clipboard.setData(
                                 const ClipboardData(text: 'kvnfldng@gmail.com'))
