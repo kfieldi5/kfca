@@ -271,7 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         projectBlurb(
                                             "files/lumos1.webp",
                                             "Lumosity (2017-2023)",
-                                            "I had the pleasure of working on this beast of an app on and off for 6 years and helped transition it to its latest form: a Flutter iOS/Android app. For the time being, I think the company is keeping the web experience in JS. The mobile app has had 3 different types of game engines embedded, loads of features over the nearly 2 decades it's been around. Working closely with the neuroscience team and understanding the 'why' was definitely a big highlight."),
+                                            "I had the pleasure of working on this beast of an app on and off for 6 years and helped transition it to its latest form: a Flutter iOS/Android app. For the time being, I think the company is keeping the web experience in JS. The mobile app has had 3 different types of game engines embedded, three major redesign overhauls and loads of features over the nearly 2 decades it's been around. Working closely with the neuroscience team and understanding the 'why' behind the games was definitely a big highlight."),
                                         insertDivider(),
                                         projectBlurb(
                                             "files/mind.webp",
@@ -286,7 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         projectBlurb(
                                             "files/pono.webp",
                                             "PonoMusic & PonoPlayer (2014-2017)",
-                                            "Getting to not only work with one of biggest musical heroes but also having to advise against his will often was a surreal experience I look back on fondly. Neil Young is a tough cookie but he was an understanding CEO if presented the information well. Despite the product not having much of a shelf life we still like to think we played somewhat of a role in Tidal, Apple Music and Spotify all upping the quality of their streamed content."),
+                                            "Getting to not only work with one of my biggest musical heroes but also having to advise against his will was a surreal experience I look back on fondly. Neil Young is a tough cookie but he was an understanding CEO if presented the information well. Despite the product not having much of a shelf life we still like to think we played somewhat of a role in Tidal, Apple Music and Spotify all upping the quality of their streamed content."),
                                         insertDivider(),
                                         projectBlurb(
                                             "files/poker.webp",
