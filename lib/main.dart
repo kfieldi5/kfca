@@ -24,15 +24,13 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
           useMaterial3: true,
           fontFamily: 'Coves'),
-      home: const MyHomePage(title: 'KevinFielding.ca'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -41,7 +39,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Color> kfColors = [Colors.lime, Colors.blue, Colors.red.shade400];
 
-  static const String skyboxUrl = 'assets/skybox.jpeg';
+  final String assetPath = (kDebugMode ? 'files/' : 'assets/files/');
+
   bool switchVal = true;
   bool switchJustHit = false;
   int index = 0;
@@ -79,9 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPointerDown: (event) => {changeIndex()},
           child: ModelViewer(
             key: ValueKey('kf$switchVal'),
-            src: (kDebugMode)
-                ? 'assets/3DMELIGHT8.glb'
-                : 'https://storage.googleapis.com/kevinfielding/kevinfieldingca/3DMELIGHT8.glb',
+            src: '${assetPath}3DMELIGHT8.glb',
             autoRotate: true,
             cameraControls: true,
             disableZoom: false,
@@ -89,9 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
             disableTap: true,
             autoPlay: true,
             skyboxImage: switchVal
-                ? (kDebugMode
-                    ? 'assets/skybox.jpeg'
-                    : 'https://storage.googleapis.com/kevinfielding/kevinfieldingca/skybox.jpeg')
+                ? '${assetPath}skybox.jpeg'
                 : '',
             animationName: "Take 001",
             rotationPerSecond: "-500%",
@@ -210,8 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     FloatingActionButton(
                       mouseCursor: SystemMouseCursors.click,
                       onPressed: () => {
-                        launchUrl(Uri.parse(
-                            'https://storage.googleapis.com/kevinfielding/kevinfieldingca/KevinFieldingResume2024.pdf'))
+                        launchUrl(Uri.parse('${assetPath}KevinFieldingResume2024.pdf'))
                       },
                       tooltip: 'look at my resume',
                       shape: const CircleBorder(),
