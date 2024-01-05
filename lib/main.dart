@@ -259,6 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Colors.white,
                                           fontWeight: FontWeight.w700),
                                       child: Stack(children: [
+
                                         ListView(
                                           children: [
                                             projectBlurb(
