@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/services.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -9,8 +10,13 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -54,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     index = Random().nextInt(3);
   }
 
@@ -147,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
+                FirebaseAnalytics.instance.logEvent(name: "terrainSwitch", parameters: {"value": val});
                 setState(() {
                   switchVal = val;
                 });
@@ -232,6 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: () {
+                          FirebaseAnalytics.instance.logEvent(name: "showWork");
                           showAnimatedDialog(
                             context: context,
                             barrierDismissible: true,
@@ -329,10 +338,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(width: 15),
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
-                        onPressed: () =>
+                        onPressed: ()
                         {
+                          FirebaseAnalytics.instance.logEvent(name: "showResume");
                           launchUrl(Uri.parse(
-                              '${assetPath}KevinFieldingResume2024.pdf'))
+                              '${assetPath}KevinFieldingResume2024.pdf'));
                         },
                         tooltip: 'look at my resume',
                         shape: const CircleBorder(),
@@ -343,8 +353,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(width: 15),
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
-                        onPressed: () =>
+                        onPressed: ()
                         {
+                          FirebaseAnalytics.instance.logEvent(name: "copyEmail");
                           Clipboard.setData(
                               const ClipboardData(text: 'kvnfldng@gmail.com'))
                               .then((_) =>
@@ -353,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   content: Text(
                                     'Copied to clipboard: kvnfldng@gmail.com',
                                     textAlign: TextAlign.right,
-                                  ))))
+                                  ))));
                         },
                         tooltip: 'send me an email',
                         shape: const CircleBorder(),
