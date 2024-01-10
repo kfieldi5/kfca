@@ -1,3 +1,4 @@
+import 'dart:js_interop';
 import 'dart:math';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -68,9 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
     index = Random().nextInt(3);
   }
 
-  Future<void> remoteLog({required String eventName, Map<String, Object?>? params}) async {
+  Future<void> remoteLog(
+      {required String eventName, Map<String, Object?>? params}) async {
     bool isAnalOn = await analytics.isSupported();
-    js.context.callMethod('logger', ["KFCA: Analytics? $isAnalOn"]);
+    js.context.callMethod('logger', [
+      "KFCA: Firebase Analytics Supported? $isAnalOn. BTW, Sorry about these ugly errors, Flutter 3 update has had some breaking changes for firebase_analytics package and I'm working with them on some solves."
+    ]);
     analytics.logEvent(name: eventName, parameters: params);
   }
 
@@ -84,7 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
       if (temp > kfColors.length - 1) {
         temp = 0;
       }
-      //print("New index: $temp");
       index = temp;
     });
   }
@@ -124,10 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: kfColors[index],
@@ -164,7 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
-                analytics.logEvent(name: "terrain_switch", parameters: {"terrain_on": val});
+                analytics.logEvent(
+                    name: "terrain_switch", parameters: {"terrain_on": val});
                 setState(() {
                   switchVal = val;
                 });
@@ -266,14 +267,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                     decoration: const BoxDecoration(
                                       color: Color(0xFFd2b48c),
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
+                                          BorderRadius.all(Radius.circular(25)),
                                     ),
                                     child: DefaultTextStyle(
                                       style: TextStyle(
                                           fontFamily: 'Coves',
-                                          fontSize: (screenWidth < 500)
-                                              ? 14
-                                              : 22,
+                                          fontSize:
+                                              (screenWidth < 500) ? 14 : 22,
                                           overflow: TextOverflow.ellipsis,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w700),
@@ -348,8 +348,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(width: 15),
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
-                        onPressed: ()
-                        {
+                        onPressed: () {
                           remoteLog(eventName: "resume");
                           launchUrl(Uri.parse(
                               '${assetPath}KevinFieldingResume2024.pdf'));
@@ -363,15 +362,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(width: 15),
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
-                        onPressed: ()
-                        {
+                        onPressed: () {
                           remoteLog(eventName: "email");
-                          Clipboard.setData(
-                              const ClipboardData(text: 'kvnfldng@gmail.com'))
-                              .then((_) =>
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                  content: Text(
+                          Clipboard.setData(const ClipboardData(
+                                  text: 'kvnfldng@gmail.com'))
+                              .then((_) => ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                          content: Text(
                                     'Copied to clipboard: kvnfldng@gmail.com',
                                     textAlign: TextAlign.right,
                                   ))));
