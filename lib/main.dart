@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'dart:js' as js;
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/foundation.dart';
@@ -67,7 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
     index = Random().nextInt(3);
   }
 
-
+  Future<void> remoteLog({required String eventName, Map<String, Object?>? params}) async {
+    bool isAnalOn = await analytics.isSupported();
+    js.context.callMethod('logger', ["KFCA: Analytics? $isAnalOn"]);
+    analytics.logEvent(name: eventName, parameters: params);
+  }
 
   void changeIndex() {
     if (switchJustHit) {
@@ -159,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
-                //analytics.logEvent(name: "terrain_switch", parameters: {"value": val});
+                analytics.logEvent(name: "terrain_switch", parameters: {"terrain_on": val});
                 setState(() {
                   switchVal = val;
                 });
@@ -245,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: () {
-                          analytics.logScreenView(screenName: "work");
+                          remoteLog(eventName: "work");
                           showAnimatedDialog(
                             context: context,
                             barrierDismissible: true,
@@ -345,7 +350,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          analytics.logScreenView(screenName: "resume");
+                          remoteLog(eventName: "resume");
                           launchUrl(Uri.parse(
                               '${assetPath}KevinFieldingResume2024.pdf'));
                         },
@@ -360,7 +365,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          analytics.logEvent(name: "email");
+                          remoteLog(eventName: "email");
                           Clipboard.setData(
                               const ClipboardData(text: 'kvnfldng@gmail.com'))
                               .then((_) =>
