@@ -63,8 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     analytics = FirebaseAnalytics.instance;
+    analytics.logAppOpen();
     index = Random().nextInt(3);
   }
+
+
 
   void changeIndex() {
     if (switchJustHit) {
@@ -116,7 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    analytics.logAppOpen();
     screenWidth = MediaQuery
         .of(context)
         .size
@@ -157,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
-                analytics.logEvent(name: "terrain_switch", parameters: {"value": val});
+                //analytics.logEvent(name: "terrain_switch", parameters: {"value": val});
                 setState(() {
                   switchVal = val;
                 });
@@ -243,7 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: () {
-                          analytics.logEvent(name: "show_work");
+                          analytics.logScreenView(screenName: "work");
                           showAnimatedDialog(
                             context: context,
                             barrierDismissible: true,
@@ -343,7 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          analytics.logEvent(name: "show_resume");
+                          analytics.logScreenView(screenName: "resume");
                           launchUrl(Uri.parse(
                               '${assetPath}KevinFieldingResume2024.pdf'));
                         },
@@ -358,7 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          analytics.logEvent(name: "copy_email");
+                          analytics.logEvent(name: "email");
                           Clipboard.setData(
                               const ClipboardData(text: 'kvnfldng@gmail.com'))
                               .then((_) =>
