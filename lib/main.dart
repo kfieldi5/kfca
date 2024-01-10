@@ -57,11 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
   bool switchJustHit = false;
   int index = 0;
 
+  late FirebaseAnalytics analytics;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
+    analytics = FirebaseAnalytics.instance;
     index = Random().nextInt(3);
   }
 
@@ -115,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    analytics.logAppOpen();
     screenWidth = MediaQuery
         .of(context)
         .size
@@ -155,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
-                FirebaseAnalytics.instance.logEvent(name: "terrainSwitch", parameters: {"value": val});
+                analytics.logEvent(name: "terrain_switch", parameters: {"value": val});
                 setState(() {
                   switchVal = val;
                 });
@@ -241,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: () {
-                          FirebaseAnalytics.instance.logEvent(name: "showWork");
+                          analytics.logEvent(name: "show_work");
                           showAnimatedDialog(
                             context: context,
                             barrierDismissible: true,
@@ -341,7 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          FirebaseAnalytics.instance.logEvent(name: "showResume");
+                          analytics.logEvent(name: "show_resume");
                           launchUrl(Uri.parse(
                               '${assetPath}KevinFieldingResume2024.pdf'));
                         },
@@ -356,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          FirebaseAnalytics.instance.logEvent(name: "copyEmail");
+                          analytics.logEvent(name: "copy_email");
                           Clipboard.setData(
                               const ClipboardData(text: 'kvnfldng@gmail.com'))
                               .then((_) =>
