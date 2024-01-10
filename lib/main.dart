@@ -154,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
+
                 //FirebaseAnalytics.instance.logEvent(name: "terrainSwitch", parameters: {"value": val});
                 setState(() {
                   switchVal = val;
