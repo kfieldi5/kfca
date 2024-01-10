@@ -71,11 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> remoteLog(
       {required String eventName, Map<String, Object?>? params}) async {
-    bool isAnalOn = await analytics.isSupported();
+    /* bool isAnalOn = await analytics.isSupported();
     js.context.callMethod('logger', [
       "KFCA: Firebase Analytics Supported? $isAnalOn. BTW, Sorry about these ugly errors, Flutter 3 update has had some breaking changes for firebase_analytics package and I'm working with them on some solves."
-    ]);
-    analytics.logEvent(name: eventName, parameters: params);
+    ]); */
+    if (!kDebugMode) {
+      analytics.logEvent(name: eventName, parameters: params);
+    }
   }
 
   void changeIndex() {
