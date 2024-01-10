@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/foundation.dart';
@@ -154,8 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const Icon(Icons.imagesearch_roller, color: Colors.white)),
               onChanged: (val) {
                 switchJustHit = true;
-
-                //FirebaseAnalytics.instance.logEvent(name: "terrainSwitch", parameters: {"value": val});
+                FirebaseAnalytics.instance.logEvent(name: "terrainSwitch", parameters: {"value": val});
                 setState(() {
                   switchVal = val;
                 });
@@ -241,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       FloatingActionButton(
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: () {
-                          //FirebaseAnalytics.instance.logEvent(name: "showWork");
+                          FirebaseAnalytics.instance.logEvent(name: "showWork");
                           showAnimatedDialog(
                             context: context,
                             barrierDismissible: true,
@@ -341,7 +341,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          //FirebaseAnalytics.instance.logEvent(name: "showResume");
+                          FirebaseAnalytics.instance.logEvent(name: "showResume");
                           launchUrl(Uri.parse(
                               '${assetPath}KevinFieldingResume2024.pdf'));
                         },
@@ -356,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mouseCursor: SystemMouseCursors.basic,
                         onPressed: ()
                         {
-                          //FirebaseAnalytics.instance.logEvent(name: "copyEmail");
+                          FirebaseAnalytics.instance.logEvent(name: "copyEmail");
                           Clipboard.setData(
                               const ClipboardData(text: 'kvnfldng@gmail.com'))
                               .then((_) =>
