@@ -3,6 +3,12 @@ import 'package:kfca/models/project.dart';
 
 final List<Project> _projects = [
   const Project(
+    imagePath: "files/rabbit.png",
+    title: "Rabbit R1 (2024-2025)",
+    desc:
+        "Joined the team after hearing about it at CES 2024. I love the synths Teenage Engineering makes and the fact that they were involved in the hardware design for this pocket AI device made me very interested. We are still pumping out feature after feature with 50 balls in the air but the device has taken massive strides. We are now experimenting with Generative UI, as well as different avenues for AI personal assistant agents.",
+  ),
+  const Project(
     imagePath: "files/soap.webp",
     title: "SOAP Audio (2023)",
     desc:

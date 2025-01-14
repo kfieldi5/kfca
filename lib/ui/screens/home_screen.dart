@@ -5,7 +5,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfca/providers/typewriter_messages_provider.dart';
 import 'package:kfca/ui/dialogs/work_dialog.dart';
@@ -43,7 +42,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> remoteLog(
-      {required String eventName, Map<String, Object?>? params}) async {
+      {required String eventName, Map<String, Object>? params}) async {
     if (!kDebugMode) {
       analytics.logEvent(name: eventName, parameters: params);
     }
@@ -65,8 +64,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _onTerrainSwitch(bool val) {
     switchJustHit = true;
-    analytics.logEvent(
-        name: "terrain_switch", parameters: {"terrain_on": val});
+    analytics.logEvent(name: "terrain_switch", parameters: {"terrain_on": val});
     setState(() {
       switchVal = val;
     });
@@ -88,19 +86,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _onWorkClick() {
     remoteLog(eventName: "work");
-    showAnimatedDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return WorkDialog(screenWidth: screenWidth);
-      },
-    );
+    showDialog(
+        context: context,
+        builder: (context) {
+          return WorkDialog(screenWidth: screenWidth);
+        });
   }
 
   void _onResumeClick() {
     remoteLog(eventName: "resume");
-    launchUrl(Uri.parse(
-        '${assetPath}KevinFieldingResume2024.pdf'));
+    launchUrl(Uri.parse('${assetPath}KevinFieldingResume2025.pdf'));
   }
 
   @override
