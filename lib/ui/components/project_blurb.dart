@@ -42,20 +42,22 @@ class ProjectBlurb extends StatelessWidget {
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
-                  text: project.desc,
-                  style: TextStyle(fontSize: (screenWidth < 500 ? 12 : 15)),
-                ),
+                    text: project.desc,
+                    style: DefaultTextStyle.of(context)
+                        .style
+                        .copyWith(fontSize: screenWidth < 500 ? 12 : 15)),
                 if (project.linkText.isNotEmpty)
                   TextSpan(
                       text: project.linkText,
-                      style: TextStyle(
-                          fontSize: (screenWidth < 500 ? 12 : 15),
-                          color: Colors.yellow.shade50,
+                      style: DefaultTextStyle.of(context).style.copyWith(
+                          fontSize: screenWidth < 500 ? 12 : 15,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () => launchUrl(Uri.parse(project.link))),
               ]),
-              maxLines: 10,
+              maxLines: 16,
               softWrap: true,
             ),
           ),
