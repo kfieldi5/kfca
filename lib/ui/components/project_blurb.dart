@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kfca/models/project.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectBlurb extends StatelessWidget {
   const ProjectBlurb({
@@ -37,9 +39,22 @@ class ProjectBlurb extends StatelessWidget {
           const SizedBox(height: 12),
           Align(
             alignment: AlignmentDirectional.centerStart,
-            child: Text(
-              project.desc,
-              style: TextStyle(fontSize: (screenWidth < 500 ? 12 : 15)),
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                  text: project.desc,
+                  style: TextStyle(fontSize: (screenWidth < 500 ? 12 : 15)),
+                ),
+                if (project.linkText.isNotEmpty)
+                  TextSpan(
+                      text: project.linkText,
+                      style: TextStyle(
+                          fontSize: (screenWidth < 500 ? 12 : 15),
+                          color: Colors.yellow.shade50,
+                          decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => launchUrl(Uri.parse(project.link))),
+              ]),
               maxLines: 10,
               softWrap: true,
             ),
