@@ -70,7 +70,7 @@ flutter:
   assets:
     - files/3DMELIGHT8.glb
     - files/skybox.jpeg
-    - files/KevinFieldingResume2025.pdf
+    - files/KevinFieldingResume2026.pdf
     - files/farmville2.webp
     - files/figment.webp
     - files/lumos1.webp
@@ -79,7 +79,8 @@ flutter:
     - files/pono.webp
     - files/soap.webp
     - files/wwf.webp
-    - files/rabbit.png
+    - files/rabbit.webp
+    - files/skims.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

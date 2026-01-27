@@ -95,7 +95,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _onResumeClick() {
     remoteLog(eventName: "resume");
-    launchUrl(Uri.parse('${assetPath}KevinFieldingResume2025.pdf'));
+    launchUrl(Uri.parse('${assetPath}KevinFieldingResume2026.pdf'));
   }
 
   @override
