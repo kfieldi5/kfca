@@ -32,30 +32,10 @@
   <title>Kevin Fielding</title>
   <link rel="manifest" href="manifest.json">
   <!-- Other stuff -->
-  <!-- Script to conditionally load model-viewer.min.js -->
-  <script>
-    (function() {
-      function isSafariMobile() {
-        const ua = navigator.userAgent;
-        return (
-          /iP(hone|od|ad)/.test(ua) && // Check for iOS device
-          /Safari/.test(ua) &&         // Check for Safari
-          !/CriOS/.test(ua) &&         // Exclude Chrome on iOS
-          !/FxiOS/.test(ua)            // Exclude Firefox on iOS
-        );
-      }
-
-      if (!isSafariMobile()) {
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.src = './assets/packages/model_viewer_plus/assets/model-viewer.min.js';
-        script.defer = true;
-        document.head.appendChild(script);
-      } else {
-        console.log('Skipping model-viewer.min.js on Safari Mobile iOS');
-      }
-    })();
-  </script>
+  <script
+    type="module"
+    src="./assets/packages/model_viewer_plus/assets/model-viewer.min.js"
+  ></script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfca/providers/typewriter_messages_provider.dart';
 import 'package:kfca/ui/dialogs/work_dialog.dart';
+import 'package:kfca/util/platform_info.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,6 +103,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final messages = ref.watch(typewriterMessagesProvider);
     screenWidth = MediaQuery.of(context).size.width;
+    final isMobileWeb = PlatformInfo.isMobileWeb;
 
     return Scaffold(
       backgroundColor: kfColors[index],
@@ -110,13 +112,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: ModelViewer(
           key: ValueKey('kf$switchVal'),
           src: '${assetPath}3DMELIGHT8.glb',
-          autoRotate: true,
+          autoRotate: !isMobileWeb,
           cameraControls: !ignore3D,
           disableZoom: ignore3D,
           disablePan: true,
           disableTap: true,
-          autoPlay: true,
-          skyboxImage: switchVal ? '${assetPath}skybox.jpeg' : '',
+          autoPlay: !isMobileWeb,
+          skyboxImage:
+              (switchVal && !isMobileWeb) ? '${assetPath}skybox.jpeg' : '',
           animationName: "Take 001",
           rotationPerSecond: "-500%",
           cameraOrbit: "0deg 85deg 105%",
@@ -129,15 +132,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Switch(
-              value: switchVal,
-              activeColor: Colors.deepOrangeAccent,
-              inactiveTrackColor: Colors.black.withAlpha(50),
-              trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
-              thumbIcon: MaterialStateProperty.all(
-                  const Icon(Icons.imagesearch_roller, color: Colors.white)),
-              onChanged: _onTerrainSwitch,
-            ),
+            if (!isMobileWeb)
+              Switch(
+                value: switchVal,
+                activeColor: Colors.deepOrangeAccent,
+                inactiveTrackColor: Colors.black.withAlpha(50),
+                trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+                thumbIcon: MaterialStateProperty.all(
+                    const Icon(Icons.imagesearch_roller, color: Colors.white)),
+                onChanged: _onTerrainSwitch,
+              ),
             const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
