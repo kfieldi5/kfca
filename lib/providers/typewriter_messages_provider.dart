@@ -10,8 +10,7 @@ final List<String> _messages = [
   "...some stuff about me...",
   "i am a massive nba fan...",
   "and a novice motorcycle mechanic",
-  "i've been an android dev since 2011...",
-  "and an iOS dev since 2014...",
+  "i've been a full stack eng since 2012",
   "i weirdly enjoy CI/CD config",
   "drop me a line..."
 ];

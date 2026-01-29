@@ -1,3 +1,3 @@
 class PlatformInfo {
-  static bool get isIosSafari => false;
+  static bool get isMobileWeb => false;
 }
