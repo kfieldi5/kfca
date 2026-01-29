@@ -3,11 +3,10 @@ import 'package:kfca/models/project.dart';
 
 final List<Project> _projects = [
   const Project(
-    imagePath: "files/skims.webp",
-    title: "Skims (2025-2026)",
-    desc:
-        "Stepping into an Engineering Manager role at a large corporate glob was not on my 2025 bingo card, but after meeting with the team I decided it would be a fun new effort and I had never worked in B2C e-comm before. Despite leading a great team, the company's traditional clothing-retail-corporate structure made it a bit difficult to get things done. Grateful for the opportunity though.",
-  ),
+      imagePath: "files/skims.webp",
+      title: "Skims (2025-2026)",
+      desc:
+          "Stepping into an Engineering Manager role at a large corporate org wasn’t on my 2025 bingo card, but after meeting the team, it felt like an exciting new challenge—especially since I’d never worked in clothing B2C e-commerce before. While I led a strong team, the company’s traditional retail-corporate structure sometimes made execution slower than I’m used to. Grateful for the experience and the opportunity."),
   const Project(
     imagePath: "files/rabbit.webp",
     title: "Rabbit R1 (2024-2025)",
