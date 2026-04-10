@@ -3,6 +3,14 @@ import 'package:kfca/models/project.dart';
 
 final List<Project> _projects = [
   const Project(
+    imagePath: "files/soap.webp",
+    title: "SOAP Audio (2023-Present)",
+    desc:
+        "I started making some audio manipulation plugins with a couple pals to increase our workflow when editing hobbyist podcasts and tutorial videos. We ended up starting a company and have a a few plugins available for sale right now, with more coming. We are also starting to venture into the music production space.",
+    linkText: "Checkout the latest at www.soapaudio.net.",
+    link: "https://www.soapaudio.net",
+  ),
+  const Project(
       imagePath: "files/skims.webp",
       title: "Skims (2025-2026)",
       desc:
@@ -15,12 +23,6 @@ final List<Project> _projects = [
     linkText: "Checkout the video I made outlining this work on The Verge.",
     link:
         "https://www.theverge.com/news/615990/rabbit-ai-agent-demonstration-lam-android-r1",
-  ),
-  const Project(
-    imagePath: "files/soap.webp",
-    title: "SOAP Audio (2023)",
-    desc:
-        "I started making some audio manipulation plugins with a couple pals to increase our workflow when editing hobbyist podcasts and tutorial videos. We only have a single plugin available for download right now.",
   ),
   const Project(
     imagePath: "files/lumos1.webp",
