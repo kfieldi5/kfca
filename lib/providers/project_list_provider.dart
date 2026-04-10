@@ -6,7 +6,7 @@ final List<Project> _projects = [
     imagePath: "files/soap.webp",
     title: "SOAP Audio (2023-Present)",
     desc:
-        "I started making some audio manipulation plugins with a couple pals to increase our workflow when editing hobbyist podcasts and tutorial videos. We ended up starting a company and have a a few plugins available for sale right now, with more coming. We are also starting to venture into the music production space.",
+        "I started making some audio manipulation plugins with a couple pals to increase our workflow when editing hobbyist podcasts and tutorial videos. We ended up starting a company and have a a few plugins available for sale right now, with more coming. We are also starting to venture into the music production space. ",
     linkText: "Checkout the latest at www.soapaudio.net.",
     link: "https://www.soapaudio.net",
   ),
